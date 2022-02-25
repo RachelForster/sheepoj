@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sheep.sheepoj.dao.ContestMapper">
+
+    <select id="findAll" resultType="com.sheep.sheepoj.entity.Contest">
+        select * from contest
+    </select>
+    <select id="findById" resultType="com.sheep.sheepoj.entity.Contest">
+        select * from contest where contest_id=#{id}
+    </select>
+
+    <select id="findAProblemList" parameterType="java.lang.Long" resultType="com.sheep.sheepoj.entity.Problem">
+        select * from problem p where p.problem_id in
+        (
+            select problem_id from contain c
+            where c.contest_id=#{id}
+
+                                        )
+    </select>
+</mapper>

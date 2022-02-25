@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sheep.sheepoj.dao.LabelsMapper">
+    <select parameterType="java.lang.Long" id="findById" resultType="java.lang.String">
+        select label from labels where problem_id=#{problem_id}
+    </select>
+</mapper>

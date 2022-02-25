@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sheep.sheepoj.dao.UserMapper">
+    <select id="findByUserName" parameterType="java.lang.String" resultType="com.sheep.sheepoj.entity.security.JwtUserDetails">
+        select * from user where user_name=#{userName}
+    </select>
+    <insert id="putOne">
+        INSERT INTO `sheepoj`.`user` (
+            `user_name`,
+            `password`
+        )
+        VALUES
+            (
+                #{userName},
+                #{password}
+            );
+
+
+    </insert>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sheep.sheepoj.dao.DiscussMapper">
+
+    <select id="findById" resultType="com.sheep.sheepoj.entity.Discuss">
+        select * from discuss where discuss_id=#{id}
+    </select>
+
+    <select id="findAll" parameterType="java.lang.String" resultType="com.sheep.sheepoj.entity.Discuss">
+        select * from discuss
+        <if test="order!=null">
+            order by ${order} desc
+        </if>
+    </select>
+    <insert id="putOne" parameterType="com.sheep.sheepoj.entity.Discuss">
+        INSERT INTO `sheepoj`.`discuss` (
+            `title`,
+            `content`,
+            `like_num`,
+            `discuss_num`,
+            `publisher_id`,
+            `date`
+        )
+        VALUES
+            (
+                #{title},
+                #{content},
+                #{likeNum},
+                #{discussNum},
+                #{publisherId},
+                now()
+            );
+    </insert>
+
+    <select id="findCommentsByDisscussId" resultType="com.sheep.sheepoj.entity.Comment">
+        select * from comment where discuss_id=#{id}
+
+    </select>
+</mapper>
+

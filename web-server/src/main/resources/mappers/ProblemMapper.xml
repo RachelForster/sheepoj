@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sheep.sheepoj.dao.ProblemMapper">
+    <select id="findAll" resultType="com.sheep.sheepoj.entity.Problem">
+        select * from problem
+    </select>
+    <select id="findById" resultType="com.sheep.sheepoj.entity.Problem" parameterType="java.lang.Long">
+        SELECT * FROM problem WHERE problem_id= #{problem_id}
+    </select>
+    <select id="findByWord" resultType="com.sheep.sheepoj.entity.Problem">
+        SELECT * FROM `problem`
+        WHERE `name` LIKE '%${word}%'
+    </select>
+    <select id="findByTag" resultType="com.sheep.sheepoj.entity.Problem">
+        select * from problem p where exists
+        (
+            select * from labels l
+            where p.problem_id=l.problem_id and label=#{label}
+                                          )
+    </select>
+
+    
+</mapper>
